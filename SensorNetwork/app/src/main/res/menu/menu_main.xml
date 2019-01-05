@@ -6,29 +6,26 @@
     tools:context=".MainActivity">
     <item
         android:id="@+id/connect"
-        android:orderInCategory="100"
+        android:orderInCategory="0"
         android:title="connect"
         android:icon="@android:drawable/button_onoff_indicator_off"
         app:showAsAction="always" />
     <item
-        android:id="@+id/bat"
-        android:orderInCategory="100"
+        android:id="@+id/battery"
+        android:orderInCategory="1"
         android:title="bat"
-        android:icon="@android:drawable/ic_lock_idle_low_battery"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:icon="@drawable/bat_ok"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/ff"
-        android:orderInCategory="100"
+        android:orderInCategory="2"
         android:title="ff"
-        android:icon="@android:drawable/stat_notify_error"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:icon="@drawable/ff_off"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/pir"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="pir"
-        android:icon="@android:drawable/ic_menu_myplaces"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:icon="@drawable/pir_off"
+        app:showAsAction="always"/>
 </menu>

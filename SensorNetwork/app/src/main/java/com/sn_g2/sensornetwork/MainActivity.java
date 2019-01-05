@@ -76,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button accbtn;
     Toolbar toolbar;
 
+    int pirCount=0;
+    int ffcount=0;
+
     private boolean first= true;
     private boolean connected = false;
     private final static String[] topics = { "g2/channels/666894/publish/J8J79SZWTMYLVK09", "g2/channels/648459/publish/44GWV2IQ8OU9Z7X3"};
@@ -87,12 +90,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle("Gateway");
 
         hostET = (EditText)findViewById(R.id.hostET);
         topicS = (Spinner) findViewById(R.id.topicS);
         topicS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(topicS.getSelectedItem().toString().equals(topics[0])){
+                    toolbar.setTitle("Gateway");
+                }else{
+                    toolbar.setTitle("Node");
+                }
                 if(!topic.equals(topicS.getSelectedItem().toString())){
                     tempChart.clear();
                     tempEntry1.clear();
@@ -232,8 +241,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     connected=false;
                 }else{
                     connectMQTT();
-                    item.setIcon(android.R.drawable.button_onoff_indicator_on);
-                    connected=true;
                 }
             }catch(MqttSecurityException e){
                 e.printStackTrace();
@@ -274,6 +281,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     topic=topicS.getSelectedItem().toString();
                     mqttAndroidClient.subscribe(topic, 0);
+                    toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_on);
+                    connected=true;
                 }catch(MqttSecurityException e){
                     e.printStackTrace();
                 }catch(MqttException e){
@@ -283,7 +292,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void connectionLost(Throwable throwable) {
-
+                connected = false;
+                toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_off);
+                connectMQTT();
             }
 
             @Override
@@ -324,6 +335,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(first){
                             batChart.setData(lineData4);
                         }
+                        if(Float.parseFloat(values[i+1])>20){
+                            toolbar.getMenu().findItem(R.id.battery).setIcon(R.drawable.bat_ok);
+                        }
                         lineData4.notifyDataChanged();
                         batChart.notifyDataSetChanged();
                         batChart.resetViewPortOffsets();
@@ -358,13 +372,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }else if(values[i].equals("field8")){
                         switch(Integer.parseInt(values[i+1])){
                             case 1:
-                                toolbar.getMenu().getItem(1).setVisible(true);
+                                toolbar.getMenu().findItem(R.id.pir).setIcon(R.drawable.pir_on);
+                                pirCount=3;
                                 break;
                             case 2:
-                                toolbar.getMenu().getItem(2).setVisible(true);
+                                toolbar.getMenu().findItem(R.id.ff).setIcon(R.drawable.ff_on);
+                                ffcount=3;
                                 break;
                             case 3:
-                                toolbar.getMenu().getItem(3).setVisible(true);
+                                toolbar.getMenu().findItem(R.id.battery).setIcon(R.drawable.bat_nok);
                                 break;
                         }
                     }
@@ -372,6 +388,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 first = false;
 
 
+                if(ffcount > 0){
+                    ffcount--;
+                }else{
+                    toolbar.getMenu().findItem(R.id.ff).setIcon(R.drawable.ff_off);
+                }
+                if (pirCount > 0) {
+                    pirCount--;
+                }else{
+                    toolbar.getMenu().findItem(R.id.pir).setIcon(R.drawable.pir_off);
+                }
             }
 
             @Override
