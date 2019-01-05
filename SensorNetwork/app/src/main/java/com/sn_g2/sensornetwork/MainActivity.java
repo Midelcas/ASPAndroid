@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int pirCount=0;
     int ffcount=0;
 
-    private boolean first= true;
     private boolean connected = false;
     private final static String[] topics = { "g2/channels/666894/publish/J8J79SZWTMYLVK09", "g2/channels/648459/publish/44GWV2IQ8OU9Z7X3"};
     @Override
@@ -120,7 +119,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     ffcount=0;
                     toolbar.getMenu().findItem(R.id.ff).setIcon(R.drawable.ff_off);
                     toolbar.getMenu().findItem(R.id.battery).setIcon(R.drawable.bat_ok);
-                    first=true;
                     try {
                         if(connected){
                             mqttAndroidClient.disconnect();
@@ -184,13 +182,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         batChart.getDescription().setEnabled(false);
         accChart.getDescription().setEnabled(false);
 
-        dataSet1.setDrawValues(true);
-        dataSet2.setDrawValues(true);
-        dataSet3.setDrawValues(true);
-        dataSet4.setDrawValues(true);
-        dataSet5.setDrawValues(true);
-        dataSet6.setDrawValues(true);
-        dataSet7.setDrawValues(true);
+        dataSet1.setDrawValues(false);
+        dataSet2.setDrawValues(false);
+        dataSet3.setDrawValues(false);
+        dataSet4.setDrawValues(false);
+        dataSet5.setDrawValues(false);
+        dataSet6.setDrawValues(false);
+        dataSet7.setDrawValues(false);
 
         tempChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         XAxis xAxis1 = tempChart.getXAxis();
@@ -306,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 for(int i=0; i< values.length; i++){
                     if(values[i].equals("field1")){
                         lineData1.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData1.getIndexOfDataSet(dataSet1));
-                        if(first){
+                        if(tempChart.getLineData()==null){
                             tempChart.setData(lineData1);
                         }
                         lineData1.notifyDataChanged();
@@ -315,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         tempChart.invalidate(); // refresh
                     }else if(values[i].equals("field2")){
                         lineData2.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData2.getIndexOfDataSet(dataSet2));
-                        if(first){
+                        if(humChart.getLineData()==null){
                             humChart.setData(lineData2);
                         }
                         lineData2.notifyDataChanged();
@@ -324,7 +322,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         humChart.invalidate(); // refresh
                     }else if(values[i].equals("field3")){
                         lineData3.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData3.getIndexOfDataSet(dataSet3));
-                        if(first){
+                        if(pressChart.getLineData()==null){
                             pressChart.setData(lineData3);
                         }
                         lineData3.notifyDataChanged();
@@ -333,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         pressChart.invalidate(); // refresh
                     }else if(values[i].equals("field4")){
                         lineData4.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData4.getIndexOfDataSet(dataSet4));
-                        if(first){
+                        if(batChart.getLineData()==null){
                             batChart.setData(lineData4);
                         }
                         if(Float.parseFloat(values[i+1])>20){
@@ -345,7 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         batChart.invalidate(); // refresh
                     }else if(values[i].equals("field5")){
                         lineData5.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData5.getIndexOfDataSet(dataSet5));
-                        if(first){
+                        if(accChart.getLineData()==null){
                             accChart.setData(lineData5);
                         }
                         lineData5.notifyDataChanged();
@@ -354,18 +352,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         accChart.invalidate(); // refresh
                     }else if(values[i].equals("field6")){
                         lineData5.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData5.getIndexOfDataSet(dataSet6));
-                        /*if(first){
+                        if(accChart.getLineData()==null){
                             accChart.setData(lineData5);
-                        }*/
+                        }
                         lineData5.notifyDataChanged();
                         accChart.notifyDataSetChanged();
                         accChart.resetViewPortOffsets();
                         accChart.invalidate(); // refresh
                     }else if(values[i].equals("field7")){
                         lineData5.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData5.getIndexOfDataSet(dataSet7));
-                        /*if(first){
+                        if(accChart.getLineData()==null){
                             accChart.setData(lineData5);
-                        }*/
+                        }
                         lineData5.notifyDataChanged();
                         accChart.notifyDataSetChanged();
                         accChart.resetViewPortOffsets();
@@ -386,7 +384,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                //first = false;
 
 
                 if(ffcount > 0){
