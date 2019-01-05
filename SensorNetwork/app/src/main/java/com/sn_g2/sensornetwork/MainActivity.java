@@ -115,15 +115,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     XEntry1.clear();
                     YEntry1.clear();
                     ZEntry1.clear();
+                    toolbar.getMenu().findItem(R.id.pir).setIcon(R.drawable.pir_off);
+                    pirCount=0;
+                    ffcount=0;
+                    toolbar.getMenu().findItem(R.id.ff).setIcon(R.drawable.ff_off);
+                    toolbar.getMenu().findItem(R.id.battery).setIcon(R.drawable.bat_ok);
                     first=true;
                     try {
                         if(connected){
                             mqttAndroidClient.disconnect();
-                            toolbar.getMenu().getItem(0).setIcon(android.R.drawable.button_onoff_indicator_off);
-                            connected = false;
-                            //connectMQTT();
-                            //toolbar.getMenu().getItem(0).setIcon(android.R.drawable.button_onoff_indicator_on);
-                            //connected = true;
                         }
                     }catch(MqttSecurityException e){
                         e.printStackTrace();
@@ -236,9 +236,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (id == R.id.connect) {
             try {
                 if (connected){
-                    mqttAndroidClient.disconnect();
-                    item.setIcon(android.R.drawable.button_onoff_indicator_off);
                     connected=false;
+                    mqttAndroidClient.disconnect();
                 }else{
                     connectMQTT();
                 }
@@ -292,9 +291,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void connectionLost(Throwable throwable) {
-                connected = false;
-                toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_off);
-                connectMQTT();
+                if(connected){
+                    connectMQTT();
+                }else{
+                    toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_off);
+                }
             }
 
             @Override
@@ -385,7 +386,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     }
                 }
-                first = false;
+                //first = false;
 
 
                 if(ffcount > 0){
