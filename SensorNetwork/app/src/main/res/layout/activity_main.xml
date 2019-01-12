@@ -36,7 +36,8 @@
                     android:id="@+id/hostET"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="host" />
+                    android:hint="host"
+                    android:text="138.100.48.251"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
