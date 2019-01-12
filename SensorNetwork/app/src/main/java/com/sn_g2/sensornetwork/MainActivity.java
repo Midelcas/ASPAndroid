@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     XEntry1.clear();
                     YEntry1.clear();
                     ZEntry1.clear();
+                    tv.setText("");
                     toolbar.getMenu().findItem(R.id.pir).setIcon(R.drawable.pir_off);
                     pirCount=0;
                     ffcount=0;
