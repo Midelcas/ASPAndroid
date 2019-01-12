@@ -20,6 +20,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String topic= "g2/channels/666894/publish/J8J79SZWTMYLVK09";
     private PahoMqttClient pahoMqttClient;
     private MqttAndroidClient mqttAndroidClient;
+
+    private TextView tv;
+
     private LineChart tempChart;
     private LineChart humChart;
     private LineChart pressChart;
@@ -138,6 +142,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, topics);
         topicS.setAdapter(adapter);
+
+        tv= (TextView)findViewById(R.id.tv);
 
         tempbtn = (Button)findViewById(R.id.tempbtn);
         tempbtn.setOnClickListener(this);
@@ -300,6 +306,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
                 calendar=Calendar.getInstance();
                 String payload = new String(mqttMessage.getPayload());
+                tv.setText(tv.getText().toString()+"\n-->"+payload+"\n");
                 String[] values = payload.split("&|=");
                 for(int i=0; i< values.length; i++){
                     if(values[i].equals("field1")){
