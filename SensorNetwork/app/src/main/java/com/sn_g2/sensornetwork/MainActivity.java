@@ -1,9 +1,12 @@
 package com.sn_g2.sensornetwork;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -18,6 +21,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+import org.w3c.dom.Text;
 
 import android.view.View;
 import android.widget.TextView;
@@ -76,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<Entry> ZEntry1;
     private LineDataSet dataSet7;
 
-    private EditText hostET;
+    private TextView tvHost;
     private Spinner topicS;
     Button tempbtn;
     Button humbtn;
@@ -100,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Gateway");
 
-        hostET = (EditText)findViewById(R.id.hostET);
+        tvHost = (TextView) findViewById(R.id.hostET);
         topicS = (Spinner) findViewById(R.id.topicS);
         topicS.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -181,9 +185,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ZEntry1 = new ArrayList<Entry>();
         //entries.add(new Entry(0,0));
         dataSet1=new LineDataSet(tempEntry1, "Temperature");
+        dataSet1.setColor(Color.parseColor("#006699"));
         dataSet2=new LineDataSet(humEntry1, "Humidity");
+        dataSet2.setColor(Color.parseColor("#006699"));
         dataSet3=new LineDataSet(pressEntry1, "Pressure");
+        dataSet3.setColor(Color.parseColor("#006699"));
         dataSet4=new LineDataSet(batEntry1, "Battery");
+        dataSet4.setColor(Color.parseColor("#006699"));
         dataSet5=new LineDataSet(XEntry1, "X");
         dataSet5.setColor(Color.RED);
         dataSet6=new LineDataSet(YEntry1, "Y");
@@ -253,6 +261,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     connected=false;
                     mqttAndroidClient.disconnect();
                 }else{
+                    getHost();
                     connectMQTT();
                 }
             }catch(MqttSecurityException e){
@@ -286,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void connectMQTT(){
         pahoMqttClient = new PahoMqttClient();
-        mqttAndroidClient = pahoMqttClient.getMqttClient(getApplicationContext(), "tcp://"+hostET.getText().toString()+":1883", Constants.CLIENT_ID);
+        mqttAndroidClient = pahoMqttClient.getMqttClient(getApplicationContext(), "tcp://"+ tvHost.getText().toString()+":1883", Constants.CLIENT_ID);
 
         mqttAndroidClient.setCallback(new MqttCallbackExtended() {
             @Override
@@ -476,6 +485,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
+    }
+
+    private void getHost(){
+        LayoutInflater layoutInflaterAndroid = LayoutInflater.from(this);
+        View mView = layoutInflaterAndroid.inflate(R.layout.pop_up_host, null);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
+        alert.setTitle("Host");
+        alert.setView(mView);
+        final EditText userInputDialogEditText = (EditText) mView.findViewById(R.id.userInputDialog);
+        userInputDialogEditText.setText(tvHost.getText().toString());
+        alert
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialogBox, int id) {
+                        String name = userInputDialogEditText.getText().toString();
+                        if(name.length()==0){
+                            name = tvHost.getText().toString();
+                        }
+                        tvHost.setText(name);
+                    }
+                })
+
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogBox, int id) {
+
+                            }
+                        });
+
+        AlertDialog alertDialogAndroid = alert.create();
+        alertDialogAndroid.show();
     }
 
 }
