@@ -314,10 +314,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void connectionLost(Throwable throwable) {
+                toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_off);
                 if(connected){
                     connectMQTT();
-                }else{
-                    toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_off);
                 }
             }
 
