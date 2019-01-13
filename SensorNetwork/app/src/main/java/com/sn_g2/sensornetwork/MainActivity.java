@@ -42,6 +42,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private MqttAndroidClient mqttAndroidClient;
 
     private TextView tv;
+    private TextView tvtemp;
+    private TextView tvhum;
+    private TextView tvpress;
+    private TextView tvbat;
+
 
     private LineChart tempChart;
     private LineChart humChart;
@@ -145,6 +150,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         topicS.setAdapter(adapter);
 
         tv= (TextView)findViewById(R.id.tv);
+        tvtemp= (TextView)findViewById(R.id.tvtemp);
+        tvhum= (TextView)findViewById(R.id.tvhum);
+        tvpress= (TextView)findViewById(R.id.tvpress);
+        tvbat= (TextView)findViewById(R.id.tvbat);
 
         tempbtn = (Button)findViewById(R.id.tempbtn);
         tempbtn.setOnClickListener(this);
@@ -307,10 +316,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
                 calendar=Calendar.getInstance();
                 String payload = new String(mqttMessage.getPayload());
-                tv.setText(tv.getText().toString()+"\n-->"+payload+"\n");
+                tv.setText(tv.getText().toString()+"\n"+Calendar.getInstance().getTime().toString()+"-->"+payload+"\n");
                 String[] values = payload.split("&|=");
                 for(int i=0; i< values.length; i++){
                     if(values[i].equals("field1")){
+                        tvtemp.setText(values[i+1]+"ºC");
                         lineData1.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData1.getIndexOfDataSet(dataSet1));
                         if(tempChart.getLineData()==null){
                             tempChart.setData(lineData1);
@@ -320,6 +330,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         tempChart.resetViewPortOffsets();
                         tempChart.invalidate(); // refresh
                     }else if(values[i].equals("field2")){
+                        tvhum.setText(values[i+1]+"%RH");
                         lineData2.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData2.getIndexOfDataSet(dataSet2));
                         if(humChart.getLineData()==null){
                             humChart.setData(lineData2);
@@ -329,6 +340,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         humChart.resetViewPortOffsets();
                         humChart.invalidate(); // refresh
                     }else if(values[i].equals("field3")){
+                        tvpress.setText(values[i+1]+"Pa");
                         lineData3.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData3.getIndexOfDataSet(dataSet3));
                         if(pressChart.getLineData()==null){
                             pressChart.setData(lineData3);
@@ -338,6 +350,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         pressChart.resetViewPortOffsets();
                         pressChart.invalidate(); // refresh
                     }else if(values[i].equals("field4")){
+                        tvbat.setText(values[i+1]+"%");
                         lineData4.addEntry(new Entry((calendar.get(Calendar.HOUR_OF_DAY)*3600+calendar.get(Calendar.MINUTE)*60+calendar.get(Calendar.SECOND)) ,Float.parseFloat(values[i+1])), lineData4.getIndexOfDataSet(dataSet4));
                         if(batChart.getLineData()==null){
                             batChart.setData(lineData4);
