@@ -40,6 +40,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LineData lineData6;
     private List<Entry> ZEntry1;
     private LineDataSet dataSet7;
+    private String clientID;
 
     private TextView tvHost;
     private Spinner topicS;
@@ -102,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
+        Random r = new Random();
+        int i1 = r.nextInt(1000 - 1) + 1;
+        clientID="client_"+i1;
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(Color.WHITE);
@@ -298,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void connectMQTT(){
         pahoMqttClient = new PahoMqttClient();
-        mqttAndroidClient = pahoMqttClient.getMqttClient(getApplicationContext(), "tcp://"+ tvHost.getText().toString()+":1883", Constants.CLIENT_ID);
+        mqttAndroidClient = pahoMqttClient.getMqttClient(getApplicationContext(), "tcp://"+ tvHost.getText().toString()+":1883", clientID);
 
         mqttAndroidClient.setCallback(new MqttCallbackExtended() {
             @Override
@@ -327,7 +332,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
                 calendar=Calendar.getInstance();
                 String payload = new String(mqttMessage.getPayload());
-                tv.setText(tv.getText().toString()+"\n"+Calendar.getInstance().getTime().toString()+"-->"+payload+"\n");
+                String text= tv.getText().toString();
+                tv.setText(" ");
+                tv.setText(text+"\n"+Calendar.getInstance().getTime().toString()+"-->"+payload+"\n");
                 String[] values = payload.split("&|=");
                 for(int i=0; i< values.length; i++){
                     if(values[i].equals("field1")){
