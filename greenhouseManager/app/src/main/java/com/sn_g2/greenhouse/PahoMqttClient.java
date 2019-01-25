@@ -1,4 +1,4 @@
-package com.sn_g2.sensornetwork;
+package com.sn_g2.greenhouse;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

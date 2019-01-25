@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sn_g2.greenhouse.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="?attr/colorPrimary"
+            android:elevation="6dp"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Host:"
+                    android:textColor="#000000"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:id="@+id/hostET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="host"
+                    android:text="138.100.48.251"
+                    android:textColor="#000000"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="Topic:"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                <Button
+                    android:id="@+id/tempbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="16dp"
+                    android:text="Temperature"/>
+                <Button
+                    android:id="@+id/humbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="16dp"
+                    android:text="Humidity"/>
+
+                <Button
+                    android:id="@+id/presbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="16dp"
+                    android:text="Pressure"/>
+
+                <Button
+                    android:id="@+id/batbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="16dp"
+                    android:text="Battery"/>
+
+                <Button
+                    android:id="@+id/accbtn"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="16dp"
+                    android:text="Accelerometer"/>
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/lv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+                <TextView
+                    android:id="@+id/tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
