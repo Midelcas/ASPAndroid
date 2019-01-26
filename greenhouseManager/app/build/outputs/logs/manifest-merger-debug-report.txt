@@ -1,13 +1,14 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\appcompat-v7-28.0.0.aar\55dabac2be97efea243598f41e02baf7\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dde3adb2dde5153678d9692ca53337ea\AndroidManifest.xml:2:1-11:12
 MERGED from [:MPChartLib-debug] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\MPChartLib-debug.aar\f1f5889f7026d32f5fa2f0c683322676\AndroidManifest.xml:2:1-20:12
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ecc5f1515c2a360fea06fb6e9cf472cf\AndroidManifest.xml:2:1-19:12
+MERGED from [com.crashlytics.sdk.android:crashlytics-ndk:2.0.5] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-ndk-2.0.5.aar\1379fd12dab2df4d7dc92e24afa33cd1\AndroidManifest.xml:23:1-33:12
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\b08387737694f055dfff98d4a15a096c\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\4da622f7ac5ba7b8310e9242b7ee4a64\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-core-ui-28.0.0.aar\5fe407800322423e7f1f581faa0fa849\AndroidManifest.xml:17:1-22:12
@@ -37,20 +38,20 @@ MERGED from [com.crashlytics.sdk.android:beta:1.2.10] C:\Users\midel\.gradle\cac
 MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.6.7] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-core-2.6.7.aar\6eaf3c337e402db2f08f912bbcf013c0\AndroidManifest.xml:45:1-56:12
 MERGED from [com.crashlytics.sdk.android:answers:1.4.6] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\answers-1.4.6.aar\09a0ba342dd255ff217b1b3706b04f67\AndroidManifest.xml:2:1-13:12
 MERGED from [io.fabric.sdk.android:fabric:1.4.7] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\fabric-1.4.7.aar\5bfe52a85afbac00a0c1026603940236\AndroidManifest.xml:22:1-33:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
+INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
 	package
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:3:5-38
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:3:5-35
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:1-31:12
 		INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:2:11-69
@@ -81,11 +82,13 @@ ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:8:5-
 	android:name
 		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:8:22-72
 application
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:11:5-29:19
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:11:5-28:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dde3adb2dde5153678d9692ca53337ea\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dde3adb2dde5153678d9692ca53337ea\AndroidManifest.xml:9:5-20
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ecc5f1515c2a360fea06fb6e9cf472cf\AndroidManifest.xml:11:5-17:19
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ecc5f1515c2a360fea06fb6e9cf472cf\AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:crashlytics-ndk:2.0.5] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-ndk-2.0.5.aar\1379fd12dab2df4d7dc92e24afa33cd1\AndroidManifest.xml:31:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-ndk:2.0.5] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-ndk-2.0.5.aar\1379fd12dab2df4d7dc92e24afa33cd1\AndroidManifest.xml:31:5-20
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\08ae8431d4cf1450c3078f4d3a2c2d47\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:support-compat:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\08ae8431d4cf1450c3078f4d3a2c2d47\AndroidManifest.xml:22:5-94
 MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\versionedparcelable-28.0.0.aar\0400a874c70f5ac1e8a216aa71b6977f\AndroidManifest.xml:22:5-23:19
@@ -101,41 +104,39 @@ MERGED from [io.fabric.sdk.android:fabric:1.4.7] C:\Users\midel\.gradle\caches\t
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-compat-28.0.0.aar\08ae8431d4cf1450c3078f4d3a2c2d47\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:16:9-35
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:14:9-41
-	android:roundIcon
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:15:9-54
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:15:9-41
 	android:icon
 		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:13:9-43
 	android:allowBackup
 		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:12:9-35
 	android:theme
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:17:9-40
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:16:9-40
 activity#com.sn_g2.greenhouse.MainActivity
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:18:9-24:20
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:17:9-23:20
 	android:name
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:18:19-67
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:17:19-67
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:19:13-23:29
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:20:17-69
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:20:25-66
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:22:17-77
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:22:27-74
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:21:27-74
 service#org.eclipse.paho.android.service.MqttService
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:25:9-80
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:24:9-80
 	android:name
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:25:18-77
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:24:18-77
 meta-data#io.fabric.ApiKey
-ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:26:9-28:72
+ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:25:9-27:72
 	android:value
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:28:13-69
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:27:13-69
 	android:name
-		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:27:13-44
+		ADDED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml:26:13-44
 uses-sdk
 INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\ASPAndroid\greenhouseManager\app\src\main\AndroidManifest.xml
@@ -148,6 +149,8 @@ MERGED from [:MPChartLib-debug] C:\Users\midel\.gradle\caches\transforms-1\files
 MERGED from [:MPChartLib-debug] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\MPChartLib-debug.aar\f1f5889f7026d32f5fa2f0c683322676\AndroidManifest.xml:16:5-18:41
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ecc5f1515c2a360fea06fb6e9cf472cf\AndroidManifest.xml:7:5-43
 MERGED from [com.crashlytics.sdk.android:crashlytics:2.9.8] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-2.9.8.aar\ecc5f1515c2a360fea06fb6e9cf472cf\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-ndk:2.0.5] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-ndk-2.0.5.aar\1379fd12dab2df4d7dc92e24afa33cd1\AndroidManifest.xml:29:5-44
+MERGED from [com.crashlytics.sdk.android:crashlytics-ndk:2.0.5] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\crashlytics-ndk-2.0.5.aar\1379fd12dab2df4d7dc92e24afa33cd1\AndroidManifest.xml:29:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\b08387737694f055dfff98d4a15a096c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\support-fragment-28.0.0.aar\b08387737694f055dfff98d4a15a096c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\midel\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-28.0.0.aar\4da622f7ac5ba7b8310e9242b7ee4a64\AndroidManifest.xml:20:5-44

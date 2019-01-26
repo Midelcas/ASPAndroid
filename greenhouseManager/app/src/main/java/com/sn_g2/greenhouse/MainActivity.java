@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.crashlytics.android.Crashlytics;
+import com.crashlytics.android.ndk.CrashlyticsNdk;
 import io.fabric.sdk.android.Fabric;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -29,7 +30,6 @@ import android.widget.TextView;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.sn_g2.sensornetwork.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
+        Fabric.with(this, new Crashlytics(), new CrashlyticsNdk());
         setContentView(R.layout.activity_main);
 
         Random r = new Random();
@@ -592,6 +592,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv12.setVisibility(View.GONE);
         tv13.setVisibility(View.GONE);
         tv14.setVisibility(View.GONE);
+        tv15.setVisibility(View.GONE);
         et2.setVisibility(View.GONE);
         et3.setVisibility(View.GONE);
         et4.setVisibility(View.GONE);
@@ -604,6 +605,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et11.setVisibility(View.GONE);
         et12.setVisibility(View.GONE);
         et14.setVisibility(View.GONE);
+        et15.setVisibility(View.GONE);
     }
 
 }
