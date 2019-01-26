@@ -656,7 +656,6 @@ id FUNCTION
 id META
 id SHIFT
 id SYM
-id accbtn
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -677,6 +676,7 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addSpecies
 id alertTitle
 id all
 id always
@@ -711,10 +711,11 @@ id direct
 id disableHome
 id edit_query
 id end
-id et1
 id et10
 id et11
 id et12
+id et14
+id et15
 id et2
 id et3
 id et4
@@ -730,6 +731,7 @@ id fill
 id fill_horizontal
 id fill_vertical
 id forever
+id getLimits
 id getRooms
 id getSpecies
 id gone
@@ -823,6 +825,9 @@ id tv1
 id tv10
 id tv11
 id tv12
+id tv13
+id tv14
+id tv15
 id tv2
 id tv3
 id tv4

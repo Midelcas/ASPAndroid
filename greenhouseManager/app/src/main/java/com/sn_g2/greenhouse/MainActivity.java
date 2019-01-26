@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     //10.49.1.26
@@ -58,7 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv10;
     private TextView tv11;
     private TextView tv12;
-    private EditText et1;
+    private TextView tv13;
+    private TextView tv14;
+    private TextView tv15;
+    //private EditText et1;
     private EditText et2;
     private EditText et3;
     private EditText et4;
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText et10;
     private EditText et11;
     private EditText et12;
+    private EditText et14;
+    private EditText et15;
     private ListView lv1;
     private ListView lv2;
     MqttMessage message;
@@ -89,11 +93,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayAdapter<String> adapter1;
     private ArrayList<String> listItems=new ArrayList<String>();
     private ArrayAdapter<String> adapter2;
-    Button tempbtn;
-    Button humbtn;
-    Button presbtn;
-    Button batbtn;
-    Button accbtn;
+    Button getSpecies;
+    Button getRooms;
+    Button test;
+    Button changeLimit;
+    Button getLimits;
+    Button addSpecies;
     Toolbar toolbar;
 
     int pirCount=0;
@@ -129,8 +134,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv10= (TextView)findViewById(R.id.tv10);
         tv11= (TextView)findViewById(R.id.tv11);
         tv12= (TextView)findViewById(R.id.tv12);
-
-        et1= (EditText)findViewById(R.id.et1);
+        tv13= (TextView)findViewById(R.id.tv13);
+        tv14= (TextView)findViewById(R.id.tv14);
+        tv15= (TextView)findViewById(R.id.tv15);
+        //et1= (EditText)findViewById(R.id.et1);
         et2= (EditText)findViewById(R.id.et2);
         et3= (EditText)findViewById(R.id.et3);
         et4= (EditText)findViewById(R.id.et4);
@@ -142,17 +149,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et10= (EditText)findViewById(R.id.et10);
         et11= (EditText)findViewById(R.id.et11);
         et12= (EditText)findViewById(R.id.et12);
+        et14= (EditText)findViewById(R.id.et14);
+        et15= (EditText)findViewById(R.id.et15);
 
-        tempbtn = (Button)findViewById(R.id.getSpecies);
-        tempbtn.setOnClickListener(this);
-        humbtn = (Button)findViewById(R.id.getRooms);
-        humbtn.setOnClickListener(this);
-        presbtn = (Button)findViewById(R.id.test);
-        presbtn.setOnClickListener(this);
-        batbtn = (Button)findViewById(R.id.changeLimit);
-        batbtn.setOnClickListener(this);
-        accbtn = (Button)findViewById(R.id.accbtn);
-        accbtn.setOnClickListener(this);
+        getSpecies = (Button)findViewById(R.id.getSpecies);
+        getSpecies.setOnClickListener(this);
+        addSpecies = (Button)findViewById(R.id.addSpecies);
+        addSpecies.setOnClickListener(this);
+        getRooms = (Button)findViewById(R.id.getRooms);
+        getRooms.setOnClickListener(this);
+        test = (Button)findViewById(R.id.test);
+        test.setOnClickListener(this);
+        changeLimit = (Button)findViewById(R.id.changeLimit);
+        changeLimit.setOnClickListener(this);
+        getLimits = (Button)findViewById(R.id.getLimits);
+        getLimits.setOnClickListener(this);
 
         lv1= (ListView)findViewById(R.id.lv1);
         lv1.setOnItemClickListener(this);
@@ -210,11 +221,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch(mode){
             case ROOMS:
                 idRoom = Integer.parseInt(itemValue);
-                break;
-            case SPECIES:
-                idSpecie = itemValue;
-                break;
-            case DATA:
                 break;
         }
 
@@ -286,8 +292,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         text = tv.getText().toString();
                     }
                     adapter1.notifyDataSetChanged();
-                    lv1.setVisibility(View.VISIBLE);
+                    lv1.setVisibility(View.GONE);
                     lv2.setVisibility(View.GONE);
+                    hideTextViews();
+                    changeLimit.setVisibility(View.GONE);
+                    test.setVisibility(View.GONE);
+                    addSpecies.setVisibility(View.VISIBLE);
+                    //tv1.setVisibility(View.VISIBLE);
+                    tv2.setVisibility(View.VISIBLE);
+                    tv3.setVisibility(View.VISIBLE);
+                    tv4.setVisibility(View.VISIBLE);
+                    tv5.setVisibility(View.VISIBLE);
+                    tv6.setVisibility(View.VISIBLE);
+                    tv7.setVisibility(View.VISIBLE);
+                    tv8.setVisibility(View.VISIBLE);
+                    tv9.setVisibility(View.VISIBLE);
+                    tv10.setVisibility(View.VISIBLE);
+                    tv11.setVisibility(View.VISIBLE);
+                    tv12.setVisibility(View.VISIBLE);
+                    tv14.setVisibility(View.VISIBLE);
+                    tv15.setVisibility(View.VISIBLE);
+                    //tv13.setVisibility(View.VISIBLE);
+                    //et1.setVisibility(View.VISIBLE);
+                    et2.setVisibility(View.VISIBLE);
+                    et3.setVisibility(View.VISIBLE);
+                    et4.setVisibility(View.VISIBLE);
+                    et5.setVisibility(View.VISIBLE);
+                    et6.setVisibility(View.VISIBLE);
+                    et7.setVisibility(View.VISIBLE);
+                    et8.setVisibility(View.VISIBLE);
+                    et9.setVisibility(View.VISIBLE);
+                    et10.setVisibility(View.VISIBLE);
+                    et11.setVisibility(View.VISIBLE);
+                    et12.setVisibility(View.VISIBLE);
+                    et14.setVisibility(View.VISIBLE);
+                    et15.setVisibility(View.VISIBLE);
+                    lv2.setVisibility(View.GONE);
+                    lv1.setVisibility(View.GONE);
+                    //tv1.setText("idRoom: ");
+                    tv2.setText("idSpecie: ");
+                    tv3.setText("maxTemp: ");
+                    tv4.setText("minTemp: ");
+                    tv5.setText("maxHum: ");
+                    tv6.setText("minHum:");
+                    tv7.setText("maxPH: ");
+                    tv8.setText("minPH: ");
+                    tv9.setText("maxOxyg: ");
+                    tv10.setText("minOxyg: ");
+                    tv11.setText("maxCond: ");
+                    tv12.setText("minCond: ");
+                    tv14.setText("maxWL: ");
+                    tv15.setText("minWL: ");
                 }else if(topicReceived.equals("g4/answer/roomsList")){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
@@ -303,11 +358,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     adapter1.notifyDataSetChanged();
                     lv1.setVisibility(View.VISIBLE);
                     lv2.setVisibility(View.GONE);
+                    hideTextViews();
+                    changeLimit.setVisibility(View.GONE);
+                    test.setVisibility(View.VISIBLE);
+                    addSpecies.setVisibility(View.GONE);
                 }else if (topicReceived.equals("g4/answer/test")){
                     listItems.clear();
                     tv.setText(payload);
                     lv2.setVisibility(View.VISIBLE);
                     lv1.setVisibility(View.GONE);
+                    hideTextViews();
                     Gson gson = new Gson();
                     Measures measure = gson.fromJson(payload, Measures.class);
                     listItems.add("idRoom");
@@ -319,14 +379,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     listItems.add("Pressure [pa]");
                     listItems.add(""+measure.getPres());
                     adapter2.notifyDataSetChanged();
+                    changeLimit.setVisibility(View.GONE);
+                    test.setVisibility(View.GONE);
+                    addSpecies.setVisibility(View.GONE);
                 }else if(topicReceived.equals("g4/answer/ambientLimits")){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
                     payload = payload.replace("\r","");
                     payload = payload.replace("\n","");
                     tv.setText(payload);
+                    hideTextViews();
                     Gson gson = new Gson();
                     AmbientModuleLimits ambientModuleLimits = gson.fromJson(payload, AmbientModuleLimits.class);
+                    lv2.setVisibility(View.GONE);
+                    lv1.setVisibility(View.GONE);
                     tv1.setVisibility(View.VISIBLE);
                     tv2.setVisibility(View.VISIBLE);
                     tv3.setVisibility(View.VISIBLE);
@@ -334,27 +400,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv5.setVisibility(View.VISIBLE);
                     tv6.setVisibility(View.VISIBLE);
                     tv7.setVisibility(View.VISIBLE);
-                    et1.setVisibility(View.VISIBLE);
+                    tv13.setVisibility(View.VISIBLE);
+                    //et1.setVisibility(View.VISIBLE);
                     et2.setVisibility(View.VISIBLE);
                     et3.setVisibility(View.VISIBLE);
                     et4.setVisibility(View.VISIBLE);
                     et5.setVisibility(View.VISIBLE);
                     et6.setVisibility(View.VISIBLE);
                     et7.setVisibility(View.VISIBLE);
-                    tv1.setText("idRoom");
-                    tv2.setText("maxTemp");
-                    tv3.setText("minTemp");
-                    tv4.setText("maxHum");
-                    tv5.setText("minHum");
-                    tv6.setText("maxPres");
-                    tv7.setText("minPres");
-                    et1.setText(ambientModuleLimits.getIdRoom());
+                    tv1.setText("idRoom: ");
+                    tv2.setText("maxTemp: ");
+                    tv3.setText("minTemp: ");
+                    tv4.setText("maxHum: ");
+                    tv5.setText("minHum:");
+                    tv6.setText("maxPres: ");
+                    tv7.setText("minPres: ");
+                    tv13.setText(""+ambientModuleLimits.getIdRoom());
                     et2.setText(""+ambientModuleLimits.getMaxTemp());
                     et3.setText(""+ambientModuleLimits.getMinTemp());
                     et4.setText(""+ambientModuleLimits.getMaxHum());
                     et5.setText(""+ambientModuleLimits.getMinHum());
                     et6.setText(""+ambientModuleLimits.getMaxPres());
                     et7.setText(""+ambientModuleLimits.getMinPres());
+                    changeLimit.setVisibility(View.VISIBLE);
+                    test.setVisibility(View.GONE);
+                    addSpecies.setVisibility(View.GONE);
                 }
 
 
@@ -413,7 +483,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.changeLimit:
-                mes="{\"command\":\"changeLimit\", \"value\":"+idRoom+"}";
+                mes="{\"command\":\"changeLimit\", \"idRoom\":"+tv13.getText().toString()+
+                                                ",\"maxTemp\":"+et2.getText().toString()+
+                                                ",\"minTemp\":"+et3.getText().toString()+
+                                                ",\"maxHum\":"+et4.getText().toString()+
+                                                ",\"minHum\":"+et5.getText().toString()+
+                                                ",\"maxPres\":"+et6.getText().toString()+
+                                                ",\"minPres\":"+et7.getText().toString()+
+                                                "}";
                 message = new MqttMessage(mes.getBytes());
                 message.setQos(0);
                 message.setRetained(false);
@@ -425,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
                 break;
-            case R.id.accbtn:
+            case R.id.getLimits:
                 message = new MqttMessage("{\"command\":\"getLimits\"}".getBytes());
                 message.setQos(0);
                 message.setRetained(false);
@@ -434,6 +511,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mode=ROOMS;
                 try {
                     mqttAndroidClient.publish("g4/commands", message);
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.addSpecies:
+                mes="{\"idSpecie\":\""+et2.getText().toString()+
+                        "\",\"maxTemp\":"+et3.getText().toString()+
+                        ",\"minTemp\":"+et4.getText().toString()+
+                        ",\"maxHum\":"+et5.getText().toString()+
+                        ",\"minHum\":"+et6.getText().toString()+
+                        ",\"maxPH\":"+et7.getText().toString()+
+                        ",\"minPH\":"+et8.getText().toString()+
+                        ",\"maxOxyg\":"+et9.getText().toString()+
+                        ",\"minOxyg\":"+et10.getText().toString()+
+                        ",\"maxCond\":"+et11.getText().toString()+
+                        ",\"minCond\":"+et12.getText().toString()+
+                        ",\"maxWL\":"+et14.getText().toString()+
+                        ",\"minWL\":"+et15.getText().toString()+
+                        "}";
+                message = new MqttMessage(mes.getBytes());
+                message.setQos(0);
+                message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
+                mode=ROOMS;
+                try {
+                    mqttAndroidClient.publish("g4/config/addSpecies", message);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
@@ -471,6 +575,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         AlertDialog alertDialogAndroid = alert.create();
         alertDialogAndroid.show();
+    }
+
+    private void hideTextViews(){
+        tv1.setVisibility(View.GONE);
+        tv2.setVisibility(View.GONE);
+        tv3.setVisibility(View.GONE);
+        tv4.setVisibility(View.GONE);
+        tv5.setVisibility(View.GONE);
+        tv6.setVisibility(View.GONE);
+        tv7.setVisibility(View.GONE);
+        tv8.setVisibility(View.GONE);
+        tv9.setVisibility(View.GONE);
+        tv10.setVisibility(View.GONE);
+        tv11.setVisibility(View.GONE);
+        tv12.setVisibility(View.GONE);
+        tv13.setVisibility(View.GONE);
+        tv14.setVisibility(View.GONE);
+        et2.setVisibility(View.GONE);
+        et3.setVisibility(View.GONE);
+        et4.setVisibility(View.GONE);
+        et5.setVisibility(View.GONE);
+        et6.setVisibility(View.GONE);
+        et7.setVisibility(View.GONE);
+        et8.setVisibility(View.GONE);
+        et9.setVisibility(View.GONE);
+        et10.setVisibility(View.GONE);
+        et11.setVisibility(View.GONE);
+        et12.setVisibility(View.GONE);
+        et14.setVisibility(View.GONE);
     }
 
 }
