@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Fri Jan 25 19:11:58 CET 2019
+0.baseType=DIRECTORY
+0.base=C\:\\ASPAndroid\\greenhouseManager\\app\\build\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
+0.path=crashlytics-build.properties
+0.set=ASSET
+count=1

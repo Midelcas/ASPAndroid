@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 
 import com.crashlytics.android.Crashlytics;
 import io.fabric.sdk.android.Fabric;
@@ -28,30 +27,56 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.sn_g2.sensornetwork.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
     //10.49.1.26
     private PahoMqttClient pahoMqttClient;
     private MqttAndroidClient mqttAndroidClient;
     private String topic = "g4/answer/#";
     private int idRoom = -1;
+    private String idSpecie="";
     private TextView tv;
+    private TextView tv1;
+    private TextView tv2;
+    private TextView tv3;
+    private TextView tv4;
+    private TextView tv5;
+    private TextView tv6;
+    private TextView tv7;
+    private TextView tv8;
+    private TextView tv9;
+    private TextView tv10;
+    private TextView tv11;
+    private TextView tv12;
+    private EditText et1;
+    private EditText et2;
+    private EditText et3;
+    private EditText et4;
+    private EditText et5;
+    private EditText et6;
+    private EditText et7;
+    private EditText et8;
+    private EditText et9;
+    private EditText et10;
+    private EditText et11;
+    private EditText et12;
     private ListView lv1;
+    private ListView lv2;
     MqttMessage message;
+    private int mode;
+    private static final int ROOMS=0;
+    private static final int SPECIES=1;
+    private static final int DATA=2;
 
 
 
@@ -60,8 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String clientID;
 
     private TextView tvHost;
+    private ArrayList<String> selectableItems =new ArrayList<String>();
+    private ArrayAdapter<String> adapter1;
     private ArrayList<String> listItems=new ArrayList<String>();
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter2;
     Button tempbtn;
     Button humbtn;
     Button presbtn;
@@ -90,28 +117,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvHost = (TextView) findViewById(R.id.hostET);
 
         tv= (TextView)findViewById(R.id.tv);
+        tv1= (TextView)findViewById(R.id.tv1);
+        tv2= (TextView)findViewById(R.id.tv2);
+        tv3= (TextView)findViewById(R.id.tv3);
+        tv4= (TextView)findViewById(R.id.tv4);
+        tv5= (TextView)findViewById(R.id.tv5);
+        tv6= (TextView)findViewById(R.id.tv6);
+        tv7= (TextView)findViewById(R.id.tv7);
+        tv8= (TextView)findViewById(R.id.tv8);
+        tv9= (TextView)findViewById(R.id.tv9);
+        tv10= (TextView)findViewById(R.id.tv10);
+        tv11= (TextView)findViewById(R.id.tv11);
+        tv12= (TextView)findViewById(R.id.tv12);
 
-        tempbtn = (Button)findViewById(R.id.tempbtn);
+        et1= (EditText)findViewById(R.id.et1);
+        et2= (EditText)findViewById(R.id.et2);
+        et3= (EditText)findViewById(R.id.et3);
+        et4= (EditText)findViewById(R.id.et4);
+        et5= (EditText)findViewById(R.id.et5);
+        et6= (EditText)findViewById(R.id.et6);
+        et7= (EditText)findViewById(R.id.et7);
+        et8= (EditText)findViewById(R.id.et8);
+        et9= (EditText)findViewById(R.id.et9);
+        et10= (EditText)findViewById(R.id.et10);
+        et11= (EditText)findViewById(R.id.et11);
+        et12= (EditText)findViewById(R.id.et12);
+
+        tempbtn = (Button)findViewById(R.id.getSpecies);
         tempbtn.setOnClickListener(this);
-        humbtn = (Button)findViewById(R.id.humbtn);
+        humbtn = (Button)findViewById(R.id.getRooms);
         humbtn.setOnClickListener(this);
-        presbtn = (Button)findViewById(R.id.presbtn);
+        presbtn = (Button)findViewById(R.id.test);
         presbtn.setOnClickListener(this);
-        batbtn = (Button)findViewById(R.id.batbtn);
+        batbtn = (Button)findViewById(R.id.changeLimit);
         batbtn.setOnClickListener(this);
         accbtn = (Button)findViewById(R.id.accbtn);
         accbtn.setOnClickListener(this);
 
         lv1= (ListView)findViewById(R.id.lv1);
-        lv1.setChoiceMode( ListView.CHOICE_MODE_MULTIPLE );
-        //lv1.setOnItemClickListener(this);
-        adapter = new ArrayAdapter(this,
-                // android.R.layout.simple_list_item_1,
-                android.R.layout.simple_list_item_checked,
+        lv1.setOnItemClickListener(this);
+        adapter1 = new ArrayAdapter(this,
+                 //android.R.layout.simple_list_item_1,
+                android.R.layout.simple_list_item_single_choice,
+                // android.R.layout.simple_list_item_single_choice,
+                // android.R.layout.simple_list_item_multiple_choice,
+                selectableItems);
+        lv1.setAdapter(adapter1);
+        lv1.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        lv2= (ListView)findViewById(R.id.lv2);
+        lv2.setChoiceMode( ListView.CHOICE_MODE_NONE );
+        lv2.setOnItemClickListener(this);
+        adapter2 = new ArrayAdapter(this,
+                //android.R.layout.simple_list_item_1,
+                android.R.layout.simple_list_item_1,
                 // android.R.layout.simple_list_item_single_choice,
                 // android.R.layout.simple_list_item_multiple_choice,
                 listItems);
-        lv1.setAdapter(adapter);
+        lv2.setAdapter(adapter2);
     }
 
     @Override
@@ -142,6 +204,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String  itemValue    = (String) lv1.getItemAtPosition(position);
+        switch(mode){
+            case ROOMS:
+                idRoom = Integer.parseInt(itemValue);
+                break;
+            case SPECIES:
+                idSpecie = itemValue;
+                break;
+            case DATA:
+                break;
+        }
+
+        tv.setText( itemValue );
+    }
+
     public class MyXAxisValueFormatter implements IAxisValueFormatter {
 
         private DecimalFormat mFormat;
@@ -169,6 +248,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void connectComplete(boolean b, String s) {
                 try {
                     mqttAndroidClient.subscribe(topic, 0);
+                    mqttAndroidClient.subscribe("g4/test", 0);
                     toolbar.getMenu().findItem(R.id.connect).setIcon(android.R.drawable.button_onoff_indicator_on);
                     connected=true;
                 }catch(MqttSecurityException e){
@@ -201,11 +281,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     payload = payload.replace("\n","");
                     String[] splitted = payload.split(",");
                     for(int i=0; i<splitted.length; i++){
-                        listItems.add(splitted[i]);
-                        adapter.notifyDataSetChanged();
+                        selectableItems.add(splitted[i]);
                         tv.setText(text+"\n"+"-->"+topicReceived+ " - " + splitted[i]+"\n");
                         text = tv.getText().toString();
                     }
+                    adapter1.notifyDataSetChanged();
+                    lv1.setVisibility(View.VISIBLE);
+                    lv2.setVisibility(View.GONE);
                 }else if(topicReceived.equals("g4/answer/roomsList")){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
@@ -214,13 +296,65 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     payload = payload.replace("\n","");
                     String[] splitted = payload.split(",");
                     for(int i=0; i<splitted.length; i++){
-                        listItems.add(splitted[i]);
-                        adapter.notifyDataSetChanged();
+                        selectableItems.add(splitted[i]);
                         tv.setText(text+"\n"+"-->"+topicReceived+ " - " + splitted[i]+"\n");
                         text = tv.getText().toString();
                     }
+                    adapter1.notifyDataSetChanged();
+                    lv1.setVisibility(View.VISIBLE);
+                    lv2.setVisibility(View.GONE);
                 }else if (topicReceived.equals("g4/answer/test")){
-
+                    listItems.clear();
+                    tv.setText(payload);
+                    lv2.setVisibility(View.VISIBLE);
+                    lv1.setVisibility(View.GONE);
+                    Gson gson = new Gson();
+                    Measures measure = gson.fromJson(payload, Measures.class);
+                    listItems.add("idRoom");
+                    listItems.add(""+measure.getIdRoom());
+                    listItems.add("Temperature [ºC]");
+                    listItems.add(""+measure.getTemp());
+                    listItems.add("Humidity [%HR]");
+                    listItems.add(""+measure.getHum());
+                    listItems.add("Pressure [pa]");
+                    listItems.add(""+measure.getPres());
+                    adapter2.notifyDataSetChanged();
+                }else if(topicReceived.equals("g4/answer/ambientLimits")){
+                    payload = payload.replace("[","");
+                    payload = payload.replace("]","");
+                    payload = payload.replace("\r","");
+                    payload = payload.replace("\n","");
+                    tv.setText(payload);
+                    Gson gson = new Gson();
+                    AmbientModuleLimits ambientModuleLimits = gson.fromJson(payload, AmbientModuleLimits.class);
+                    tv1.setVisibility(View.VISIBLE);
+                    tv2.setVisibility(View.VISIBLE);
+                    tv3.setVisibility(View.VISIBLE);
+                    tv4.setVisibility(View.VISIBLE);
+                    tv5.setVisibility(View.VISIBLE);
+                    tv6.setVisibility(View.VISIBLE);
+                    tv7.setVisibility(View.VISIBLE);
+                    et1.setVisibility(View.VISIBLE);
+                    et2.setVisibility(View.VISIBLE);
+                    et3.setVisibility(View.VISIBLE);
+                    et4.setVisibility(View.VISIBLE);
+                    et5.setVisibility(View.VISIBLE);
+                    et6.setVisibility(View.VISIBLE);
+                    et7.setVisibility(View.VISIBLE);
+                    tv1.setText("idRoom");
+                    tv2.setText("maxTemp");
+                    tv3.setText("minTemp");
+                    tv4.setText("maxHum");
+                    tv5.setText("minHum");
+                    tv6.setText("maxPres");
+                    tv7.setText("minPres");
+                    et1.setText(ambientModuleLimits.getIdRoom());
+                    et2.setText(""+ambientModuleLimits.getMaxTemp());
+                    et3.setText(""+ambientModuleLimits.getMinTemp());
+                    et4.setText(""+ambientModuleLimits.getMaxHum());
+                    et5.setText(""+ambientModuleLimits.getMinHum());
+                    et6.setText(""+ambientModuleLimits.getMaxPres());
+                    et7.setText(""+ambientModuleLimits.getMinPres());
                 }
 
 
@@ -236,42 +370,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        String mes="";
         switch(view.getId()){
-            case R.id.tempbtn:
+            case R.id.getSpecies:
                 message = new MqttMessage("{\"command\":\"getSpecies\"}".getBytes());
                 message.setQos(0);
                 message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
+                mode=SPECIES;
                 try {
                     mqttAndroidClient.publish("g4/commands", message);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
                 break;
-            case R.id.humbtn:
+            case R.id.getRooms:
                 message = new MqttMessage("{\"command\":\"getRooms\"}".getBytes());
                 message.setQos(0);
                 message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
+                mode=ROOMS;
                 try {
                     mqttAndroidClient.publish("g4/commands", message);
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
                 break;
-            case R.id.presbtn:
-                message = new MqttMessage("{\"command\":\"test\"}".getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.batbtn:
-                String mes="{\"command\":\"changeLimit\", \"value\":"+idRoom+"}";
+            case R.id.test:
+                mes = "{\"command\":\"test\", \"idRoom\":"+idRoom+"}";
                 message = new MqttMessage(mes.getBytes());
                 message.setQos(0);
                 message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
+                mode=DATA;
+                try {
+                    mqttAndroidClient.publish("g4/commands", message);
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case R.id.changeLimit:
+                mes="{\"command\":\"changeLimit\", \"value\":"+idRoom+"}";
+                message = new MqttMessage(mes.getBytes());
+                message.setQos(0);
+                message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
                 try {
                     mqttAndroidClient.publish("g4/commands", message);
                 } catch (MqttException e) {
@@ -279,7 +426,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.accbtn:
-
+                message = new MqttMessage("{\"command\":\"getLimits\"}".getBytes());
+                message.setQos(0);
+                message.setRetained(false);
+                selectableItems.clear();
+                adapter1.notifyDataSetChanged();
+                mode=ROOMS;
+                try {
+                    mqttAndroidClient.publish("g4/commands", message);
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }
