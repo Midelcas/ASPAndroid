@@ -26,6 +26,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.components.AxisBase;
@@ -80,7 +81,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int mode;
     private static final int ROOMS=0;
     private static final int SPECIES=1;
-    private static final int DATA=2;
+    private static final int TEST=2;
+    private static final int CHANGE=3;
+    private static final int LIMITS=4;
+    private static final int ADDSPECIES=5;
+    private static final int SHELF=6;
+    private static final int ADDSHELF=7;
 
 
 
@@ -99,7 +105,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button changeLimit;
     Button getLimits;
     Button addSpecies;
+    Button shelf;
+    Button addShelf;
     Toolbar toolbar;
+    Spinner speciespinner;
+    Spinner shelfspinner;
+    ArrayList<String> speciesList = new ArrayList<String>();
+    ArrayList<String> shelfList = new ArrayList<String>();
+    ArrayAdapter adapterspecies;
+    ArrayAdapter adaptershelf;
 
     int pirCount=0;
     int ffcount=0;
@@ -119,6 +133,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setTitle("Gateway");
 
+        speciespinner = (Spinner) findViewById(R.id.speciespinner);
+        shelfspinner = (Spinner) findViewById(R.id.shelfspinner);
+        speciespinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        shelfspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        adapterspecies = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, speciesList);
+        adaptershelf = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, shelfList);
+        speciespinner.setAdapter(adapterspecies);
+        shelfspinner.setAdapter(adaptershelf);
         tvHost = (TextView) findViewById(R.id.hostET);
 
         tv= (TextView)findViewById(R.id.tv);
@@ -164,6 +206,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         changeLimit.setOnClickListener(this);
         getLimits = (Button)findViewById(R.id.getLimits);
         getLimits.setOnClickListener(this);
+        shelf = (Button)findViewById(R.id.shelf);
+        shelf.setOnClickListener(this);
+        addShelf = (Button)findViewById(R.id.addShelf);
+        addShelf.setOnClickListener(this);
+
 
         lv1= (ListView)findViewById(R.id.lv1);
         lv1.setOnItemClickListener(this);
@@ -279,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String text="";
                 tv.setText(" ");
 
-                if(topicReceived.equals("g4/answer/speciesList")){
+                if((topicReceived.equals("g4/answer/speciesList"))&&(mode == SPECIES)){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
                     payload = payload.replace("\"","");
@@ -343,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv12.setText("minCond: ");
                     tv14.setText("maxWL: ");
                     tv15.setText("minWL: ");
-                }else if(topicReceived.equals("g4/answer/roomsList")){
+                }else if((topicReceived.equals("g4/answer/roomsList"))&&(mode==ROOMS)){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
                     payload = payload.replace("\"","");
@@ -362,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     changeLimit.setVisibility(View.GONE);
                     test.setVisibility(View.VISIBLE);
                     addSpecies.setVisibility(View.GONE);
-                }else if (topicReceived.equals("g4/answer/test")){
+                }else if ((topicReceived.equals("g4/answer/test")&&(mode==TEST))){
                     listItems.clear();
                     tv.setText(payload);
                     lv2.setVisibility(View.VISIBLE);
@@ -382,7 +429,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     changeLimit.setVisibility(View.GONE);
                     test.setVisibility(View.GONE);
                     addSpecies.setVisibility(View.GONE);
-                }else if(topicReceived.equals("g4/answer/ambientLimits")){
+                }else if((topicReceived.equals("g4/answer/ambientLimits"))&&(mode==LIMITS)){
                     payload = payload.replace("[","");
                     payload = payload.replace("]","");
                     payload = payload.replace("\r","");
@@ -425,6 +472,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     changeLimit.setVisibility(View.VISIBLE);
                     test.setVisibility(View.GONE);
                     addSpecies.setVisibility(View.GONE);
+                }else if((topicReceived.equals("g4/answer/roomsList")||(topicReceived.equals("g4/answer/speciesList")))&&(mode==SHELF)){
+                    if(topicReceived.equals("g4/answer/roomsList")){
+                        payload = payload.replace("[","");
+                        payload = payload.replace("]","");
+                        payload = payload.replace("\"","");
+                        payload = payload.replace("\r","");
+                        payload = payload.replace("\n","");
+                        String[] splitted = payload.split(",");
+                        for(int i=0; i<splitted.length; i++){
+                            shelfList.add(splitted[i]);
+                            tv.setText(text+"\n"+"-->"+topicReceived+ " - " + splitted[i]+"\n");
+                            text = tv.getText().toString();
+                        }
+                        shelfspinner.setVisibility(View.VISIBLE);
+                        adaptershelf.notifyDataSetChanged();
+                    }
+                    if(topicReceived.equals("g4/answer/speciesList")){
+                        payload = payload.replace("[","");
+                        payload = payload.replace("]","");
+                        payload = payload.replace("\"","");
+                        payload = payload.replace("\r","");
+                        payload = payload.replace("\n","");
+                        String[] splitted = payload.split(",");
+                        for(int i=0; i<splitted.length; i++){
+                            speciesList.add(splitted[i]);
+                            tv.setText(text+"\n"+"-->"+topicReceived+ " - " + splitted[i]+"\n");
+                            text = tv.getText().toString();
+                        }
+                        speciespinner.setVisibility(View.VISIBLE);
+                        adapterspecies.notifyDataSetChanged();
+                    }
+                    addShelf.setVisibility(View.VISIBLE);
                 }
 
 
@@ -441,107 +520,150 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         String mes="";
-        switch(view.getId()){
-            case R.id.getSpecies:
-                message = new MqttMessage("{\"command\":\"getSpecies\"}".getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                mode=SPECIES;
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.getRooms:
-                message = new MqttMessage("{\"command\":\"getRooms\"}".getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                mode=ROOMS;
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.test:
-                mes = "{\"command\":\"test\", \"idRoom\":"+idRoom+"}";
-                message = new MqttMessage(mes.getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                mode=DATA;
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.changeLimit:
-                mes="{\"command\":\"changeLimit\", \"idRoom\":"+tv13.getText().toString()+
-                                                ",\"maxTemp\":"+et2.getText().toString()+
-                                                ",\"minTemp\":"+et3.getText().toString()+
-                                                ",\"maxHum\":"+et4.getText().toString()+
-                                                ",\"minHum\":"+et5.getText().toString()+
-                                                ",\"maxPres\":"+et6.getText().toString()+
-                                                ",\"minPres\":"+et7.getText().toString()+
-                                                "}";
-                message = new MqttMessage(mes.getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.getLimits:
-                message = new MqttMessage("{\"command\":\"getLimits\"}".getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                mode=ROOMS;
-                try {
-                    mqttAndroidClient.publish("g4/commands", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.addSpecies:
-                mes="{\"idSpecie\":\""+et2.getText().toString()+
-                        "\",\"maxTemp\":"+et3.getText().toString()+
-                        ",\"minTemp\":"+et4.getText().toString()+
-                        ",\"maxHum\":"+et5.getText().toString()+
-                        ",\"minHum\":"+et6.getText().toString()+
-                        ",\"maxPH\":"+et7.getText().toString()+
-                        ",\"minPH\":"+et8.getText().toString()+
-                        ",\"maxOxyg\":"+et9.getText().toString()+
-                        ",\"minOxyg\":"+et10.getText().toString()+
-                        ",\"maxCond\":"+et11.getText().toString()+
-                        ",\"minCond\":"+et12.getText().toString()+
-                        ",\"maxWL\":"+et14.getText().toString()+
-                        ",\"minWL\":"+et15.getText().toString()+
-                        "}";
-                message = new MqttMessage(mes.getBytes());
-                message.setQos(0);
-                message.setRetained(false);
-                selectableItems.clear();
-                adapter1.notifyDataSetChanged();
-                mode=ROOMS;
-                try {
-                    mqttAndroidClient.publish("g4/config/addSpecies", message);
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-                break;
+        if(connected) {
+            switch (view.getId()) {
+                case R.id.getSpecies:
+                    message = new MqttMessage("{\"command\":\"getSpecies\"}".getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    mode = SPECIES;
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.getRooms:
+                    message = new MqttMessage("{\"command\":\"getRooms\"}".getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    mode = ROOMS;
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.test:
+                    mes = "{\"command\":\"test\", \"idRoom\":" + idRoom + "}";
+                    message = new MqttMessage(mes.getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    mode = TEST;
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.changeLimit:
+                    mes = "{\"command\":\"changeLimit\", \"idRoom\":" + tv13.getText().toString() +
+                            ",\"maxTemp\":" + et2.getText().toString() +
+                            ",\"minTemp\":" + et3.getText().toString() +
+                            ",\"maxHum\":" + et4.getText().toString() +
+                            ",\"minHum\":" + et5.getText().toString() +
+                            ",\"maxPres\":" + et6.getText().toString() +
+                            ",\"minPres\":" + et7.getText().toString() +
+                            "}";
+                    message = new MqttMessage(mes.getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    mode = CHANGE;
+                    break;
+                case R.id.getLimits:
+                    message = new MqttMessage("{\"command\":\"getLimits\"}".getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    mode = ROOMS;
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    mode =LIMITS;
+                    break;
+                case R.id.addSpecies:
+                    if(selectableItems.contains(et2.getText().toString())){
+                        tv.setText("OK");
+                    }else{
+                        tv.setText("NOK");
+                    }
+                    mes = "{\"idSpecie\":\"" + et2.getText().toString() +
+                            "\",\"maxTemp\":" + et3.getText().toString() +
+                            ",\"minTemp\":" + et4.getText().toString() +
+                            ",\"maxHum\":" + et5.getText().toString() +
+                            ",\"minHum\":" + et6.getText().toString() +
+                            ",\"maxPH\":" + et7.getText().toString() +
+                            ",\"minPH\":" + et8.getText().toString() +
+                            ",\"maxOxyg\":" + et9.getText().toString() +
+                            ",\"minOxyg\":" + et10.getText().toString() +
+                            ",\"maxCond\":" + et11.getText().toString() +
+                            ",\"minCond\":" + et12.getText().toString() +
+                            ",\"maxWL\":" + et14.getText().toString() +
+                            ",\"minWL\":" + et15.getText().toString() +
+                            "}";
+                    message = new MqttMessage(mes.getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    adapter1.notifyDataSetChanged();
+                    mode = ROOMS;
+                    try {
+                        mqttAndroidClient.publish("g4/config/addSpecies", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    mode=ADDSPECIES;
+                    break;
+                case R.id.shelf:
+                    message = new MqttMessage("{\"command\":\"getSpecies\"}".getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    message = new MqttMessage("{\"command\":\"getRooms\"}".getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    try {
+                        mqttAndroidClient.publish("g4/commands", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    mode=SHELF;
+                    break;
+                case R.id.addShelf:
+                    tv.setText(speciespinner.getSelectedItem().toString());
+                    mes = "{\"idSpecie\":\""+ speciespinner.getSelectedItem().toString()+"\", \"idShelf\":" + Integer.parseInt(shelfspinner.getSelectedItem().toString()) + "}";
+                    message = new MqttMessage(mes.getBytes());
+                    message.setQos(2);
+                    message.setRetained(false);
+                    selectableItems.clear();
+                    adapter1.notifyDataSetChanged();
+                    try {
+                        mqttAndroidClient.publish("g4/config/addShelf", message);
+                    } catch (MqttException e) {
+                        e.printStackTrace();
+                    }
+                    mode=ADDSHELF;
+                    break;
+            }
         }
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sn_g2.sensornetwork"
+    package="com.sn_g2.greenhousemanager"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -38,12 +38,12 @@
 
         <provider
             android:name="com.crashlytics.android.CrashlyticsInitProvider"
-            android:authorities="com.sn_g2.sensornetwork.crashlyticsinitprovider"
+            android:authorities="com.sn_g2.greenhousemanager.crashlyticsinitprovider"
             android:exported="false"
             android:initOrder="90" />
         <provider
             android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="com.sn_g2.sensornetwork.com.android.tools.ir.server.InstantRunContentProvider"
+            android:authorities="com.sn_g2.greenhousemanager.com.android.tools.ir.server.InstantRunContentProvider"
             android:multiprocess="true" />
     </application>
 
