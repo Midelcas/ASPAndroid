@@ -12,10 +12,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <EditText
+    <Spinner
         android:id="@+id/userInputDialog"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Something"
-        android:inputType="text" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

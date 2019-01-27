@@ -10,22 +10,4 @@
         android:title="connect"
         android:icon="@android:drawable/button_onoff_indicator_off"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/battery"
-        android:orderInCategory="1"
-        android:title="bat"
-        android:icon="@drawable/bat_ok"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/ff"
-        android:orderInCategory="2"
-        android:title="ff"
-        android:icon="@drawable/ff_off"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/pir"
-        android:orderInCategory="3"
-        android:title="pir"
-        android:icon="@drawable/pir_off"
-        app:showAsAction="always"/>
 </menu>

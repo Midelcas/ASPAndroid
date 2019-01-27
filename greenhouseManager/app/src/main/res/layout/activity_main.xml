@@ -43,31 +43,23 @@
                     android:textColor="#000000"
                     android:textSize="16sp"/>
             </LinearLayout>
-        </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                android:orientation="horizontal">
                 <Button
                     android:id="@+id/getSpecies"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:padding="16dp"
-                    android:text="Species"/>
+                    android:text="Species" />
                 <Button
                     android:id="@+id/getRooms"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:padding="16dp"
                     android:text="Test"/>
-                    <Button
+                <Button
                     android:id="@+id/getLimits"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
@@ -80,7 +72,15 @@
                     android:padding="16dp"
                     android:text="Shelf"/>
 
-                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <ListView
                     android:id="@+id/lv1"
                     android:layout_height="350dp"
@@ -151,7 +151,8 @@
                         android:id="@+id/et3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,7 +167,8 @@
                         android:id="@+id/et4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,7 +183,8 @@
                         android:id="@+id/et5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,7 +199,8 @@
                         android:id="@+id/et6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -211,7 +215,8 @@
                         android:id="@+id/et7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -226,7 +231,8 @@
                         android:id="@+id/et8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,7 +247,8 @@
                         android:id="@+id/et9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -256,7 +263,8 @@
                         android:id="@+id/et10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -271,7 +279,8 @@
                         android:id="@+id/et11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,7 +295,8 @@
                         android:id="@+id/et12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -301,7 +311,8 @@
                         android:id="@+id/et14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -316,7 +327,8 @@
                         android:id="@+id/et15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:inputType="numberDecimal"/>
                 </LinearLayout>
                 <Button
                     android:id="@+id/addSpecies"

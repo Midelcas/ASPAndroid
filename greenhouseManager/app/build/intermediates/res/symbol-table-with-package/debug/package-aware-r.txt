@@ -683,7 +683,6 @@ id all
 id always
 id async
 id barrier
-id battery
 id beginning
 id blocking
 id bottom
@@ -727,7 +726,6 @@ id et8
 id et9
 id expand_activities_button
 id expanded_menu
-id ff
 id fill
 id fill_horizontal
 id fill_vertical
@@ -768,7 +766,6 @@ id packed
 id parent
 id parentPanel
 id percent
-id pir
 id progress_circular
 id progress_horizontal
 id radio
