@@ -457,8 +457,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     et6.setText(""+ambientModuleLimits.getMaxPres());
                     et7.setText(""+ambientModuleLimits.getMinPres());
                     changeLimit.setVisibility(View.VISIBLE);
-                }else if((topicReceived.equals("g4/answer/roomsList")||(topicReceived.equals("g4/answer/speciesList")))&&(mode==SHELF)){
-                    if(topicReceived.equals("g4/answer/roomsList")){
+                }else if((topicReceived.equals("g4/answer/shelfsList")||(topicReceived.equals("g4/answer/speciesList")))&&(mode==SHELF)){
+                    if(topicReceived.equals("g4/answer/shelfsList")){
                         payload = payload.replace("[","");
                         payload = payload.replace("]","");
                         payload = payload.replace("\"","");
@@ -613,7 +613,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } catch (MqttException e) {
                         e.printStackTrace();
                     }
-                    message = new MqttMessage("{\"command\":\"getRooms\"}".getBytes());
+                    message = new MqttMessage("{\"command\":\"getShelfs\"}".getBytes());
                     message.setQos(2);
                     message.setRetained(false);
                     try {
