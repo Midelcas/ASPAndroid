@@ -36,8 +36,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="648" column="31" selection-start-line="648" selection-start-column="31" selection-end-line="648" selection-end-column="31" />
+            <state relative-caret-position="252">
+              <caret line="492" column="58" selection-start-line="492" selection-start-column="58" selection-end-line="492" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -2639,17 +2639,17 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-97" />
-    <option name="y" value="-864" />
-    <option name="width" value="1944" />
-    <option name="height" value="1104" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1943" />
+    <option name="height" value="1103" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -2672,8 +2672,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2807,8 +2807,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-1088" width="1936" height="1096" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="Android Profiler" order="7" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -2824,11 +2823,11 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07356077" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.072874494" />
       <window_info anchor="bottom" id="Build" order="7" weight="0.036307056" />
       <window_info anchor="right" id="Gradle" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="right" id="Fabric" order="3" visible="true" weight="0.32995737" />
+      <window_info anchor="right" id="Fabric" order="3" weight="0.32955465" />
       <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -2845,7 +2844,38 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java</url>
+          <line>390</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java</url>
+          <line>465</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="4" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="payload" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11016">
+          <caret line="648" column="31" selection-start-line="648" selection-start-column="31" selection-end-line="648" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10115">
@@ -2862,8 +2892,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/sn_g2/greenhouse/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="648" column="31" selection-start-line="648" selection-start-column="31" selection-end-line="648" selection-end-column="31" />
+        <state relative-caret-position="252">
+          <caret line="492" column="58" selection-start-line="492" selection-start-column="58" selection-end-line="492" selection-end-column="58" />
         </state>
       </provider>
     </entry>

@@ -335,6 +335,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     payload = payload.replace("\"","");
                     payload = payload.replace("\r","");
                     payload = payload.replace("\n","");
+                    payload = payload.replace("{ value: ","");
+                    payload = payload.replace("}","");
+                    payload = payload.replace(" ","");
                     String[] splitted = payload.split(",");
                     for(int i=0; i<splitted.length; i++){
                         selectableItems.add(splitted[i]);
@@ -392,6 +395,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     payload = payload.replace("\"","");
                     payload = payload.replace("\r","");
                     payload = payload.replace("\n","");
+                    payload = payload.replace("{ value: ","");
+                    payload = payload.replace("}","");
+                    payload = payload.replace(" ","");
                     String[] splitted = payload.split(",");
                     for(int i=0; i<splitted.length; i++){
                         selectableItems.add(splitted[i]);
@@ -464,6 +470,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         payload = payload.replace("\"","");
                         payload = payload.replace("\r","");
                         payload = payload.replace("\n","");
+                        payload = payload.replace("{ value: ","");
+                        payload = payload.replace("}","");
+                        payload = payload.replace(" ","");
                         String[] splitted = payload.split(",");
                         for(int i=0; i<splitted.length; i++){
                             shelfList.add(splitted[i]);
@@ -479,6 +488,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         payload = payload.replace("\"","");
                         payload = payload.replace("\r","");
                         payload = payload.replace("\n","");
+                        payload = payload.replace("{ value: ","");
+                        payload = payload.replace("}","");
+                        payload = payload.replace(" ","");
                         String[] splitted = payload.split(",");
                         for(int i=0; i<splitted.length; i++){
                             speciesList.add(splitted[i]);
